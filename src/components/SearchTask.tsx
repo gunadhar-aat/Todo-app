@@ -1,3 +1,4 @@
+import React from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import {
   Container,
@@ -5,7 +6,6 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import React from "react";
 
 const SearchTask = ({
   task,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Container } from "./Container";
 import { TodoList } from "./TodoList";
@@ -16,6 +16,17 @@ export const Main = () => {
     "all"
   );
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
 
   const handleAddTask = () => {
     if (task.trim() !== "") {
@@ -35,7 +46,7 @@ export const Main = () => {
 
     const matchesSearch = t.text
       .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+      .includes(debouncedSearchQuery.toLowerCase());
 
     return matchesFilter && matchesSearch;
   });

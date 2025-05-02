@@ -11,15 +11,13 @@ export const TodoInput = ({
   setTask: (value: string) => {};
   onAdd: () => void;
 }) => (
-  <Container p={"0px 10px"}>
+  <Container p={"0px 5px"}>
     <InputGroup>
-      <InputLeftElement pointerEvents="none">
-        <SearchIcon color="#6c63ff" />
-      </InputLeftElement>
       <Input
+        autoFocus
         borderColor={"#6c63ff"}
         focusBorderColor="#6c63ff"
-        placeholder="Search Note..."
+        placeholder="Add Note..."
         onChange={(e) => setTask(e.target.value)}
       />
     </InputGroup>
