@@ -16,14 +16,6 @@ A simple and functional ToDo app built with modern frontend technologies. It all
   - 📋 All tasks
 - ☑️ **Toggle Task Completion** – Use checkboxes to mark tasks as complete or incomplete.
 
----
-
-## 📸 Screenshots
-
-> _Add screenshots of your UI if possible_
-
----
-
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
