@@ -13,18 +13,16 @@ import {
 } from "@chakra-ui/react";
 import { TodoInput } from "./TodoInput";
 
-export const AddTask = () => {
+export const AddTask = ({
+  task,
+  setTask,
+  onAdd,
+}: {
+  task: string;
+  setTask: (value: string) => {};
+  onAdd: () => void;
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [addTask, setAddTask] = useState([]);
-  const [task, setTask] = useState("");
-
-  const handleApply = () => {
-    if (task) {
-      setAddTask((prev) => [...prev, task]);
-      setTask("");
-      onClose();
-    }
-  };
 
   return (
     <Fragment>
@@ -48,7 +46,9 @@ export const AddTask = () => {
         <ModalContent>
           <ModalHeader alignSelf={"center"}>NEW NOTE</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{/* <TodoInput setTask={setTask as any} /> */}</ModalBody>
+          <ModalBody>
+            <TodoInput task={task} setTask={setTask as any} onAdd={onAdd} />
+          </ModalBody>
 
           <ModalFooter pt={20} width={"full"} justifyContent={"space-between"}>
             <Button
@@ -64,7 +64,10 @@ export const AddTask = () => {
               bg={"#6c63ff"}
               color={"white"}
               _hover={{ bg: "" }}
-              onClick={handleApply}
+              onClick={() => {
+                onAdd();
+                onClose();
+              }}
             >
               APPLY
             </Button>

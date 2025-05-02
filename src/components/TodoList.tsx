@@ -11,11 +11,11 @@ import { CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import NoResultFound from "./NoResultFound";
 
 export const TodoList = ({
-  addTask,
+  filteredTasks,
   setAddTask,
   filter,
 }: {
-  addTask: { text: string; completed: boolean }[];
+  filteredTasks: { text: string; completed: boolean }[];
   setAddTask: React.Dispatch<
     React.SetStateAction<{ text: string; completed: boolean }[]>
   >;
@@ -25,37 +25,31 @@ export const TodoList = ({
   const [editText, setEditText] = useState("");
 
   const handleDelete = (index: number) => {
-    setAddTask(addTask.filter((_, i) => i !== index));
+    setAddTask(filteredTasks.filter((_, i) => i !== index));
   };
 
   const handleEdit = (index: number) => {
     setEditingIndex(index);
-    setEditText(addTask[index].text);
+    setEditText(filteredTasks[index].text);
   };
 
   const saveEdit = (index: number) => {
     if (editText.trim() === "") return;
-    const updatedTasks = [...addTask];
+    const updatedTasks = [...filteredTasks];
     updatedTasks[index].text = editText;
     setAddTask(updatedTasks);
     setEditingIndex(null);
   };
 
   const toggleComplete = (index: number) => {
-    const updatedTasks = [...addTask];
+    const updatedTasks = [...filteredTasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
     setAddTask(updatedTasks);
   };
 
-  const filteredTasks = addTask.filter((task) => {
-    if (filter === "completed") return task.completed;
-    if (filter === "incomplete") return !task.completed;
-    return true;
-  });
-
   return (
     <Fragment>
-      {addTask.length === 0 && <NoResultFound />}
+      {filteredTasks.length === 0 && <NoResultFound />}
       <CheckboxGroup>
         {filteredTasks.map((task, index) => (
           <Stack
