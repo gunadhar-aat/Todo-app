@@ -55,7 +55,8 @@ HTML, CSS, JavaScript
 
 Git & GitHub
 
-🌐 Live Demo
+### 🌐 Live Demo
+
 🔗 Click here to view [live](https://todo-app-six-ecru-27.vercel.app/) app
 
 ### 🙌 Contribution
