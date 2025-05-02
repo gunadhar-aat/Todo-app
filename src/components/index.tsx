@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Container } from "./Container";
 import { TodoList } from "./TodoList";
-import { TodoInput } from "./TodoInput";
 import TodoSelect from "./TodoSelect";
 import { AddTask } from "./AddTask";
+import SearchTask from "./SearchTask";
 
 export const Main = () => {
   const [addTask, setAddTask] = useState<
@@ -15,6 +15,18 @@ export const Main = () => {
   const [filter, setFilter] = useState<"all" | "completed" | "incomplete">(
     "all"
   );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
 
   const handleAddTask = () => {
     if (task.trim() !== "") {
@@ -22,7 +34,23 @@ export const Main = () => {
       setTask("");
     }
   };
-  console.log(addTask);
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const filteredTasks = addTask.filter((t) => {
+    const matchesFilter =
+      filter === "all" ||
+      (filter === "completed" && t.completed) ||
+      (filter === "incomplete" && !t.completed);
+
+    const matchesSearch = t.text
+      .toLowerCase()
+      .includes(debouncedSearchQuery.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  });
+
   return (
     <Container p={"0px 10px"}>
       <Grid
@@ -32,11 +60,7 @@ export const Main = () => {
         width={"full"}
       >
         <GridItem colSpan={{ base: 1, md: 2 }}>
-          <TodoInput
-            task={task}
-            setTask={setTask as any}
-            onAdd={handleAddTask}
-          />
+          <SearchTask task={searchQuery} onSearch={handleSearch} />
         </GridItem>
 
         <GridItem colSpan={{ base: 1 }}>
@@ -44,8 +68,12 @@ export const Main = () => {
         </GridItem>
       </Grid>
 
-      <TodoList addTask={addTask} setAddTask={setAddTask} filter={filter} />
-      <AddTask />
+      <TodoList
+        filteredTasks={filteredTasks}
+        setAddTask={setAddTask}
+        filter={filter}
+      />
+      <AddTask task={task} setTask={setTask as any} onAdd={handleAddTask} />
     </Container>
   );
 };
