@@ -13,21 +13,30 @@ const SearchTask = ({
 }: {
   task: string;
   onSearch: (query: string) => void;
-}) => (
-  <Container p={"0px 10px"}>
-    <InputGroup>
-      <InputLeftElement pointerEvents="none">
-        <SearchIcon color="#6c63ff" />
-      </InputLeftElement>
-      <Input
-        value={task}
-        borderColor={"#6c63ff"}
-        focusBorderColor="#6c63ff"
-        placeholder="Search Note..."
-        onChange={(e) => onSearch(e.target.value)}
-      />
-    </InputGroup>
-  </Container>
-);
+}) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onSearch("");
+    }
+  };
+
+  return (
+    <Container p={"0px 10px"}>
+      <InputGroup>
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="#6c63ff" />
+        </InputLeftElement>
+        <Input
+          value={task}
+          borderColor={"#6c63ff"}
+          focusBorderColor="#6c63ff"
+          placeholder="Search Note..."
+          onChange={(e) => onSearch(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </InputGroup>
+    </Container>
+  );
+};
 
 export default SearchTask;
