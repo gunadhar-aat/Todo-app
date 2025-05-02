@@ -31,8 +31,44 @@ A simple and functional ToDo app built with modern frontend technologies. It all
 ```bash
 git clone https://github.com/your-username/todo-app.git
 cd todo-app
+```
 
 ### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run locally
+```bash
+npm run dev
+```
+
+### 📦 Build for Production
+```bash
+npm run build
+```
+
+### 🛠️ Technologies Used
+React / Next.js
+
+HTML, CSS, JavaScript
+
+Git & GitHub
+
+🌐 Live Demo
+🔗 Click here to view [live](https://todo-app-six-ecru-27.vercel.app/) app
+
+### 🙌 Contribution
+Feel free to fork this repo, open issues, or submit pull requests!
+
+### 📄 License
+
+
+---
+
+Would you like me to include badges (e.g., GitHub Pages deployed, MIT license, etc.) at the top too?
+
+---
 
 
 
