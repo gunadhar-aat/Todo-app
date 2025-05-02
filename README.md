@@ -1,3 +1,43 @@
+# ✅ ToDo App
+
+A simple and functional ToDo app built with modern frontend technologies. It allows users to manage tasks efficiently with features like **adding**, **editing**, **deleting**, **searching**, **filtering**, and **marking tasks complete/incomplete** using checkboxes.
+
+---
+
+## ✨ Features
+
+- 📝 **Add Task** – Easily add new tasks to your list.
+- 🗑️ **Delete Task** – Remove unwanted tasks.
+- ✏️ **Edit Task** – Update the task content inline.
+- 🔍 **Search Tasks** – Real-time search to quickly find tasks.
+- 🔁 **Filter Tasks** – View:
+  - ✅ Completed tasks
+  - ⬜ Incomplete tasks
+  - 📋 All tasks
+- ☑️ **Toggle Task Completion** – Use checkboxes to mark tasks as complete or incomplete.
+
+---
+
+## 📸 Screenshots
+
+> _Add screenshots of your UI if possible_
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/todo-app.git
+cd todo-app
+
+### 2. Install dependencies
+
+
+
+
+
 # Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
 
 This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
