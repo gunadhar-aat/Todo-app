@@ -32,6 +32,19 @@ const theme = extendTheme({
   colors: {
     black: "#16161D",
   },
+  components: {
+    Checkbox: {
+      baseStyle: {
+        control: {
+          _checked: {
+            bg: "#6c63ff",
+            borderColor: "#6c63ff",
+          },
+        },
+      },
+    },
+  },
+
   fonts,
   breakpoints,
 });
